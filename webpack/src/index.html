@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hello world</title>
-  <script defer src="runtime.bundle.js"></script><script defer src="index.bundle.js"></script><script defer src="print.bundle.js"></script></head>
+    <link rel="shortcut icon" href="#" />
+  </head>
   <body>
     <div class="main-container">
       <div class="form-container">
@@ -18,7 +19,9 @@
                 <input type="text" name="projectName" id="projectName" />
               </li>
               <li>
-                <button class="submit-project">Submit Project</button>
+                <button class="submit-project-button" id="submit-project">
+                  Add Project
+                </button>
               </li>
             </ul>
           </form>
@@ -35,6 +38,16 @@
                 <label for="whatToDo">What you need to do?</label>
                 <input type="text" name="whatToDo" id="what-to-do" />
               </li>
+              <li class="dropdown">
+                <select name="projectToAddTo" id="project-to-add-to">
+                  <option value="defaultProject">Default Project</option>
+                </select>
+              </li>
+              <li>
+                <button class="submit-task-button" id="submit-task-button">
+                  Add Task
+                </button>
+              </li>
             </ul>
           </form>
         </div>
@@ -48,10 +61,10 @@
         </div>
       </div>
     </div>
-    hello world!
+
     <!-- default project todo list that loads by default.
 
  have a small form where you can create a new project todo list OR add a new
-task to a specific project.-->
+task to a specific project. -->
   </body>
 </html>

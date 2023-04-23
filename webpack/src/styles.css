@@ -1,0 +1,7 @@
+.form-container {
+  display: flex;
+}
+
+.project.card {
+  background-color: red;
+}
