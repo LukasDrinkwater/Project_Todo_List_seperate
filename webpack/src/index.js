@@ -1,6 +1,14 @@
 import _ from "lodash";
+import { formatDistance, subDays } from "date-fns";
+formatDistance(subDays(new Date(), 3), new Date(), { addSuffix: true });
 import "./styles.css";
-import { getProjectFormData } from "./functions";
+import {
+  getProjectFormData,
+  createDefaultProject,
+  getTaskFormData,
+  addTaskToProject,
+} from "./functions";
+import { projectArray, taskArray } from "./functions";
 
 // class that is the project and tasks for the todo list can be added to it.
 // use classes or a factory function to create each item that is added to
@@ -9,9 +17,11 @@ import { getProjectFormData } from "./functions";
 
 // form variables
 const projectForm = document.getElementById("project-submit-form");
-const taskForm = document.getElementById("list-submit-form");
+const taskForm = document.getElementById("task-submit-form");
 const submitProjectButton = document.getElementById("submit-project");
 const submitTaskButton = document.getElementById("submit-task-button");
+
+const projectTaskContainer = document.getElementById("project-task-container");
 
 // add event listener to the Add Project button and prevent default and call
 // functions
@@ -23,6 +33,25 @@ projectForm.addEventListener("submit", (event) => {
 
   getProjectFormData(projectForm);
 });
+
+// add event listener to the Add Task button and prevent default and call
+// functions
+taskForm.addEventListener("submit", (event) => {
+  // Prevent the default form submission behavior
+  // creates an object of the from the form data and a blank object
+  event.preventDefault();
+
+  getTaskFormData(taskForm);
+  addTaskToProject(projectArray, taskArray);
+});
+
+//
+//
+//
+//
+//
+//
+//
 
 projectForm.addEventListener("submit", (event) => {
   event.preventDefault(); // prevent the default form submission behavior
@@ -48,3 +77,9 @@ projectForm.addEventListener("submit", (event) => {
   );
   projectTaskContainer.appendChild(cardDiv);
 });
+
+function main() {
+  createDefaultProject(projectTaskContainer);
+}
+
+main();

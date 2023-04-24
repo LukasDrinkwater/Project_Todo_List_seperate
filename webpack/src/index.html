@@ -28,8 +28,8 @@
         </div>
         <div class="list-submit-form-container">
           <!-- need to look at local storage in the TOP page for -->
-          <form id="list-submit-form" action="" method="?">
-            <ul id="list-form-ul">
+          <form id="task-submit-form" action="" method="?">
+            <ul id="task-form-ul">
               <li>
                 <label for="taskName">Task</label>
                 <input type="text" name="taskName" id="task-name" />
@@ -37,6 +37,15 @@
               <li>
                 <label for="whatToDo">What you need to do?</label>
                 <input type="text" name="whatToDo" id="what-to-do" />
+              </li>
+              <li>
+                <label for="completeDate">Complete Date</label>
+                <input
+                  type="date"
+                  id="complete-date"
+                  name="completeDate"
+                  value="2023-01-01"
+                />
               </li>
               <li class="dropdown">
                 <select name="projectToAddTo" id="project-to-add-to">
@@ -52,14 +61,7 @@
           </form>
         </div>
       </div>
-      <div class="project-task-container" id="project-task-container">
-        <div class="project-card">
-          <h1>Todays tasks</h1>
-          <div class="task-card">
-            <p>I want to do this</p>
-          </div>
-        </div>
-      </div>
+      <div class="project-task-container" id="project-task-container"></div>
     </div>
 
     <!-- default project todo list that loads by default.
