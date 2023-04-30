@@ -1,4 +1,7 @@
 import { formDataInfo } from "./form-data";
+import { Task } from "./task";
+import { Project, addProjectToLocalStorage } from "./projects";
+import { refreshProjectSelect } from "./controller";
 
 function userFormEvents() {
   const form = formDataInfo;
@@ -7,10 +10,14 @@ function userFormEvents() {
   // functions
 
   form.projectForm.addEventListener("submit", (event) => {
-    console.log("working");
-    // Prevent the default form submission behavior
+    event.preventDefault(); // Prevent the default form submission behavior
     // creates an object of the from the form data and a blank object
-    event.preventDefault();
+    let formData = formDataInfo.projectForm;
+    let projectData = getProjectFormData(formData);
+
+    let project = new Project([], projectData.projectName);
+    addProjectToLocalStorage(project);
+    // refreshProjectSelect();
   });
 
   // add event listener to the Add Task button and prevent default and call
@@ -23,7 +30,7 @@ function userFormEvents() {
     // take the variables from the form, then pass them into a new class
     let taskFormData = getProjectFormData(form.taskForm);
 
-    //  call a function that creates a new
+    //  call a function that creates a new task object
   });
 }
 

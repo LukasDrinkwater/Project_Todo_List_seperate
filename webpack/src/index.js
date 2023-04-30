@@ -1,13 +1,7 @@
 import _ from "lodash";
 
 import "./styles.css";
-import {
-  getProjectFormData,
-  createDefaultProject,
-  getTaskFormData,
-  addTaskToProject,
-} from "./projects";
-import { projectArray, taskArray } from "./projects";
+
 //
 //
 import { controller } from "./controller";

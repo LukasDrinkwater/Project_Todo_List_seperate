@@ -1,5 +1,10 @@
 import { formDataInfo } from "./form-data";
 import { Task } from "./task";
+import { Project } from "./projects";
+
+function makeDefaultProject1() {
+  let defaultProject1 = new Project([], "defaultTask1");
+}
 
 // making default task 1
 function makeDefaultTask1() {
