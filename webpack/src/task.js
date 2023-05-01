@@ -1,3 +1,5 @@
+import { reassigProjectClass, getProjectsArray } from "./projects";
+
 class Task {
   constructor(taskName, whatToDo, dueDate, assignedProject) {
     this._taskName = taskName;
@@ -19,13 +21,18 @@ class Task {
   }
 }
 
-// function Task(taskName, whatToDo, dueDate, projectName) {
-//   return {
-//     taskName,
-//     whatToDo,
-//     dueDate,
-//     projectName,
-//   };
-// }
+function addTaskToProject(task) {
+  let projectsParsed = getProjectsArray(); // get the local storage projects array
+  let projects = reassigProjectClass(projectsParsed);
 
-export { Task };
+  // loop through projects array and check to see if the project name matches
+  // the task assignedProject. if it does push the task to the task array in the
+  // projects array.
+
+  console.log(task);
+
+  // projects.push(project);
+  // localStorage.setItem("allProjects", JSON.stringify(projects));
+}
+
+export { Task, addTaskToProject };

@@ -1,6 +1,6 @@
 import { userFormEvents } from "./user-events";
 import { makeDefaultTask1, makeDefaultTaskDOM } from "./create-defaults";
-import { AllProjects } from "./projects";
+import { AllProjects, reassigProjectClass, getProjectsArray } from "./projects";
 import { formDataInfo } from "./form-data";
 
 // What i would do first is, figure out how to write a project to a json file
@@ -25,7 +25,7 @@ function createProjectStorage() {
 function controller() {
   createProjectStorage(); //makes the project storage array.
   userFormEvents(); //  functions for default project
-  refreshProjectSelect(); //updates project select menu dropdown
+  // refreshProjectSelect(); //updates project select menu dropdown
 
   // makeDefaultTaskDOM();
 
@@ -34,20 +34,26 @@ function controller() {
 
 // DOM REFRESH STUFF
 function refreshProjectSelect() {
-  let projects = JSON.parse(window.localStorage.getItem("allProjects"));
+  let projectsParsed = getProjectsArray();
   let selectMenu = formDataInfo.selectMenu;
   let options = selectMenu.options;
   let optionsValues = [];
-
-  console.log(projects[0]);
+  let projects = reassigProjectClass();
+  // for loop to take the tasks and project name from each index in the projects local
+  // storage array
+  // for (let i = 0; i < projectsParsed.length; i++) {
+  //   let project = reassigProjectClass(
+  //     projectsParsed[i]._tasks,
+  //     projectsParsed[i]._projectName
+  //   );
+  //   projects.push(project);
+  // }
 
   for (let i = 0; i < projects.length; i++) {
     let option = document.createElement("option");
     option.value = projects[i].projectName;
-    console.log(projects[i].projectName);
 
     option.text = projects[i].projectName;
-    console.log(option.text);
 
     selectMenu.add(option);
   }
@@ -56,7 +62,5 @@ function refreshProjectSelect() {
   //   optionsValues.push(options[i].value);
   // }
 }
-
-// class
 
 export { controller, refreshProjectSelect };

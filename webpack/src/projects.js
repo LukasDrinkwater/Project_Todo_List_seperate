@@ -21,9 +21,9 @@ class Project {
 }
 
 function getProjectsArray() {
-  let projects = JSON.parse(localStorage.getItem("allProjects"));
-  console.log(projects);
-  return projects;
+  let projectsParsed = JSON.parse(localStorage.getItem("allProjects"));
+  // console.log(projectsParsed);
+  return projectsParsed;
 }
 
 function addProjectToLocalStorage(project) {
@@ -33,4 +33,29 @@ function addProjectToLocalStorage(project) {
   localStorage.setItem("allProjects", JSON.stringify(projects));
 }
 
-export { Project, addProjectToLocalStorage };
+// remakes the each project object when pulling it out of the local storage
+// so you can use the prototypes and methods.
+function reassigProjectClass(projectsParsed) {
+  let projects = [];
+  // for loop to take the tasks and project name from each index in the projects local
+  // storage array
+  for (let i = 0; i < projectsParsed.length; i++) {
+    let project = new Project(
+      projectsParsed[i]._tasks,
+      projectsParsed[i]._projectName
+    );
+    projects.push(project);
+  }
+
+  return projects;
+}
+
+// for loop to take the tasks and project name from each index in the projects local
+// storage array
+
+export {
+  Project,
+  addProjectToLocalStorage,
+  reassigProjectClass,
+  getProjectsArray,
+};
