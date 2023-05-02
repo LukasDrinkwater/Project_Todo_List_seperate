@@ -28,8 +28,12 @@ function getProjectsArray() {
 
 function addProjectToLocalStorage(project) {
   let projects = getProjectsArray(); // get the local storage projects array
-  console.log(project);
+
   projects.push(project);
+  localStorage.setItem("allProjects", JSON.stringify(projects));
+}
+
+function addAllBackToLocalStorage(projects) {
   localStorage.setItem("allProjects", JSON.stringify(projects));
 }
 
@@ -58,4 +62,5 @@ export {
   addProjectToLocalStorage,
   reassigProjectClass,
   getProjectsArray,
+  addAllBackToLocalStorage,
 };

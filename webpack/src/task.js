@@ -14,22 +14,28 @@ class Task {
     return this._whatToDo;
   }
   get dueDate() {
-    return this.dueDate;
+    return this._dueDate;
   }
   get assignedProject() {
-    return this.assignedProject;
+    return this._assignedProject;
   }
 }
 
 function addTaskToProject(task) {
   let projectsParsed = getProjectsArray(); // get the local storage projects array
   let projects = reassigProjectClass(projectsParsed);
-
+  console.log(projects);
   // loop through projects array and check to see if the project name matches
   // the task assignedProject. if it does push the task to the task array in the
   // projects array.
-
-  console.log(task);
+  for (let i = 0; i < projects.length; i++) {
+    console.log(projects[i].projectName);
+    console.log(task.assignedProject);
+    if (projects[i].projectName === task.assignedProject) {
+      projects[i].tasks.push(task);
+    }
+  }
+  return projects;
 
   // projects.push(project);
   // localStorage.setItem("allProjects", JSON.stringify(projects));

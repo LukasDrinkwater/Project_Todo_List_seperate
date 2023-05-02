@@ -16,10 +16,19 @@
             <ul id="project-form-ul">
               <li>
                 <label for="projectName">Project Name</label>
-                <input type="text" name="projectName" id="projectName" />
+                <input
+                  type="text"
+                  name="projectName"
+                  id="projectName"
+                  required
+                />
               </li>
               <li>
-                <button class="submit-project-button" id="submit-project">
+                <button
+                  class="submit-project-button"
+                  id="submit-project"
+                  required
+                >
                   Add Project
                 </button>
               </li>
@@ -32,11 +41,11 @@
             <ul id="task-form-ul">
               <li>
                 <label for="taskName">Task</label>
-                <input type="text" name="taskName" id="taskname" />
+                <input type="text" name="taskName" id="taskname" required />
               </li>
               <li>
                 <label for="whatToDo">What you need to do?</label>
-                <input type="text" name="whatToDo" id="what-to-do" />
+                <input type="text" name="whatToDo" id="what-to-do" required />
               </li>
               <li>
                 <label for="completeDate">Complete Date</label>
@@ -45,11 +54,12 @@
                   id="complete-date"
                   name="completeDate"
                   value="2023-01-01"
+                  required
                 />
               </li>
               <li class="dropdown">
-                <select name="projectToAddTo" id="project-to-add-to">
-                  <option value="Default Project">Default Project</option>
+                <select name="projectToAddTo" id="project-to-add-to" required>
+                  <!-- <option value="Default Project">Default Project</option> -->
                 </select>
               </li>
               <li>

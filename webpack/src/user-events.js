@@ -5,6 +5,7 @@ import {
   addProjectToLocalStorage,
   getProjectsArray,
   reassigProjectClass,
+  addAllBackToLocalStorage,
 } from "./projects";
 import { refreshProjectSelect } from "./controller";
 
@@ -45,11 +46,8 @@ function userFormEvents() {
     );
 
     // add the new task to the specific project
-    addTaskToProject(task);
-    // let projectsParsed = getProjectsArray();
-    // let projectsArray = reassigProjectClass(projectsParsed);
-
-    console.log(task.taskName, task.whatToDo);
+    let projects = addTaskToProject(task);
+    addAllBackToLocalStorage(projects);
 
     //  call a function that creates a new task object
   });

@@ -1,21 +1,36 @@
 import { formDataInfo } from "./form-data";
 import { Task } from "./task";
-import { Project } from "./projects";
+import {
+  Project,
+  addProjectToLocalStorage,
+  getProjectsArray,
+  reassigProjectClass,
+} from "./projects";
 
 function makeDefaultProject1() {
-  let defaultProject1 = new Project([], "defaultTask1");
+  let defaultProject1 = new Project([], "Default Project");
+  addProjectToLocalStorage(defaultProject1);
 }
 
 // making default task 1
 function makeDefaultTask1() {
   let defaultTask1 = new Task(
-    "default task 1",
+    "default task",
     "test if it makes a task",
     "15/05/2023",
     "defaultTask1"
   );
 
   return defaultTask1;
+}
+
+function checkIfDefaultTask1Excists() {
+  let projectsParsed = getProjectsArray();
+  let projects = reassigProjectClass(projectsParsed);
+
+  if (projects.length === 0) {
+    makeDefaultProject1();
+  }
 }
 
 // makes the default task DOM
@@ -37,4 +52,4 @@ function makeDefaultTaskDOM() {
   attachToThisProjectCard.appendChild(projectTaskCard);
 }
 
-export { makeDefaultTask1, makeDefaultTaskDOM };
+export { makeDefaultTask1, makeDefaultTaskDOM, checkIfDefaultTask1Excists };

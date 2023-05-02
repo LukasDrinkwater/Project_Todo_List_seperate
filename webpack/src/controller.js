@@ -1,5 +1,9 @@
 import { userFormEvents } from "./user-events";
-import { makeDefaultTask1, makeDefaultTaskDOM } from "./create-defaults";
+import {
+  makeDefaultTask1,
+  makeDefaultTaskDOM,
+  checkIfDefaultTask1Excists,
+} from "./create-defaults";
 import { AllProjects, reassigProjectClass, getProjectsArray } from "./projects";
 import { formDataInfo } from "./form-data";
 
@@ -24,8 +28,9 @@ function createProjectStorage() {
 
 function controller() {
   createProjectStorage(); //makes the project storage array.
+  checkIfDefaultTask1Excists();
   userFormEvents(); //  functions for default project
-  // refreshProjectSelect(); //updates project select menu dropdown
+  refreshProjectSelect(); //updates project select menu dropdown
 
   // makeDefaultTaskDOM();
 
@@ -35,10 +40,11 @@ function controller() {
 // DOM REFRESH STUFF
 function refreshProjectSelect() {
   let projectsParsed = getProjectsArray();
+  let projects = reassigProjectClass(projectsParsed);
   let selectMenu = formDataInfo.selectMenu;
   let options = selectMenu.options;
   let optionsValues = [];
-  let projects = reassigProjectClass();
+
   // for loop to take the tasks and project name from each index in the projects local
   // storage array
   // for (let i = 0; i < projectsParsed.length; i++) {
