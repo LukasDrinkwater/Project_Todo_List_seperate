@@ -1,8 +1,4 @@
-// class AllProjects {
-//   constructor(projectName) {
-//     this._projectName = projectName;
-//   }
-// }
+import { Task } from "./task";
 
 class Project {
   // task object
@@ -26,6 +22,7 @@ function getProjectsArray() {
   return projectsParsed;
 }
 
+// for adding a single project to local storage.
 function addProjectToLocalStorage(project) {
   let projects = getProjectsArray(); // get the local storage projects array
 
@@ -33,6 +30,7 @@ function addProjectToLocalStorage(project) {
   localStorage.setItem("allProjects", JSON.stringify(projects));
 }
 
+// for adding all project including tasks back
 function addAllBackToLocalStorage(projects) {
   localStorage.setItem("allProjects", JSON.stringify(projects));
 }
@@ -44,10 +42,21 @@ function reassigProjectClass(projectsParsed) {
   // for loop to take the tasks and project name from each index in the projects local
   // storage array
   for (let i = 0; i < projectsParsed.length; i++) {
+    let projectTasks = projectsParsed[i]._tasks;
+    let tasks;
     let project = new Project(
       projectsParsed[i]._tasks,
       projectsParsed[i]._projectName
     );
+    // for (let j = 0; j < projectTasks.length; j++) {
+    //   let task = new Task(
+    //     projectTasks[j]._taskName,
+    //     projectTasks[j]._whatToDo,
+    //     projectTasks[j]._dueDate,
+    //     projectTasks[j]._assignedProject
+    //   );
+    //   console.log(task);
+    // }
     projects.push(project);
   }
 

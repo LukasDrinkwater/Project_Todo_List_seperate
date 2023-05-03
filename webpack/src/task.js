@@ -24,17 +24,18 @@ class Task {
 function addTaskToProject(task) {
   let projectsParsed = getProjectsArray(); // get the local storage projects array
   let projects = reassigProjectClass(projectsParsed);
-  console.log(projects);
+
   // loop through projects array and check to see if the project name matches
   // the task assignedProject. if it does push the task to the task array in the
   // projects array.
   for (let i = 0; i < projects.length; i++) {
-    console.log(projects[i].projectName);
-    console.log(task.assignedProject);
+    // console.log(projects[i].projectName);
+    // console.log(task.assignedProject);
     if (projects[i].projectName === task.assignedProject) {
       projects[i].tasks.push(task);
     }
   }
+  console.log(projects);
   return projects;
 
   // projects.push(project);

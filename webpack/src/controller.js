@@ -6,6 +6,7 @@ import {
 } from "./create-defaults";
 import { AllProjects, reassigProjectClass, getProjectsArray } from "./projects";
 import { formDataInfo } from "./form-data";
+import { domCreateProject } from "./change-dom";
 
 // What i would do first is, figure out how to write a project to a json file
 // Then how to read that project from there
@@ -32,9 +33,7 @@ function controller() {
   userFormEvents(); //  functions for default project
   refreshProjectSelect(); //updates project select menu dropdown
 
-  // makeDefaultTaskDOM();
-
-  // function
+  domCreateProject();
 }
 
 // DOM REFRESH STUFF

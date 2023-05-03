@@ -8,6 +8,7 @@ import {
   addAllBackToLocalStorage,
 } from "./projects";
 import { refreshProjectSelect } from "./controller";
+import { domCreateProject, addDomTasks } from "./change-dom";
 
 function userFormEvents() {
   const form = formDataInfo;
@@ -48,6 +49,9 @@ function userFormEvents() {
     // add the new task to the specific project
     let projects = addTaskToProject(task);
     addAllBackToLocalStorage(projects);
+
+    // domCreateProject();
+    addDomTasks();
 
     //  call a function that creates a new task object
   });
