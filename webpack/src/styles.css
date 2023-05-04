@@ -1,7 +1,34 @@
-.form-container {
-  display: flex;
+/* css colours */
+:root {
+  --Green1: #2f9c85;
+  --Green2: #40c9a2;
+  --Green3: #a3f7b5;
+  --Green4: #e5f9e0;
 }
 
-.project.card {
-  background-color: red;
+/* MAIN CONTAINER CSS */
+.main-container {
+  display: grid;
+  grid-template-columns: 0.2fr 1fr;
+}
+
+/* FORM CSS */
+.project-
+
+
+/* FORM CONTAINER CSS */
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* PROJECT CONTAINER CSS */
+.project-task-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* PROJECT CARD CSS */
+.project-card {
+  border-style: dashed;
 }

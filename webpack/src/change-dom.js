@@ -4,6 +4,12 @@ import { formDataInfo } from "./form-data";
 // projectObject is the project that is being added.
 function addProjectDOM(projectObject) {}
 
+function clearProjectTaskContainer() {
+  let projectTaskContainer = formDataInfo.projectTaskContainer;
+
+  projectTaskContainer.innerHTML = "";
+}
+
 // takes in the project array.
 function domCreateProject(projectArray) {
   let projectsParsed = getProjectsArray();
@@ -47,4 +53,4 @@ function addDomTasks(projectToAddTo) {
   console.log(projectCardElements);
 }
 
-export { domCreateProject, addDomTasks };
+export { domCreateProject, addDomTasks, clearProjectTaskContainer };

@@ -8,7 +8,7 @@ import {
   addAllBackToLocalStorage,
 } from "./projects";
 import { refreshProjectSelect } from "./controller";
-import { domCreateProject, addDomTasks } from "./change-dom";
+import { domCreateProject, clearProjectTaskContainer } from "./change-dom";
 
 function userFormEvents() {
   const form = formDataInfo;
@@ -23,7 +23,10 @@ function userFormEvents() {
 
     let project = new Project([], projectData.projectName);
     addProjectToLocalStorage(project);
-    // refreshProjectSelect();
+    // update DOM
+    refreshProjectSelect();
+    clearProjectTaskContainer();
+    domCreateProject();
   });
 
   //
@@ -49,9 +52,10 @@ function userFormEvents() {
     // add the new task to the specific project
     let projects = addTaskToProject(task);
     addAllBackToLocalStorage(projects);
-
-    // domCreateProject();
-    addDomTasks();
+    // update DOM
+    refreshProjectSelect();
+    clearProjectTaskContainer();
+    domCreateProject();
 
     //  call a function that creates a new task object
   });
