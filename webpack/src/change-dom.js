@@ -29,14 +29,14 @@ function domCreateProject(projectArray) {
     // console.log(currentProject);
     for (let j = 0; j < currentProject.tasks.length; j++) {
       const taskCard = document.createElement("div");
-      const taskCardH1 = document.createElement("h1");
+      // const taskCardH1 = document.createElement("h1");
       const taskCardp = document.createElement("p");
 
       taskCard.classList.add("task-card");
-      taskCardH1.innerHTML = currentProject.tasks[j]._taskName;
+      // taskCardH1.innerHTML = currentProject.tasks[j]._taskName;
       taskCardp.innerHTML = currentProject.tasks[j]._whatToDo;
       // console.log(currentProject.tasks[j].whatToDo);
-      taskCard.appendChild(taskCardH1);
+      // taskCard.appendChild(taskCardH1);
       taskCard.appendChild(taskCardp);
       projectCard.appendChild(taskCard);
     }

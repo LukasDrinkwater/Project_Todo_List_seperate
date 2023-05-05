@@ -39,16 +39,22 @@
           <!-- need to look at local storage in the TOP page for -->
           <form id="task-submit-form" action="" method="?">
             <ul id="task-form-ul">
-              <li>
+              <!-- <li>
                 <label for="taskName">Task</label>
                 <input type="text" name="taskName" id="taskname" required />
-              </li>
+              </li> -->
               <li>
                 <label for="whatToDo">What you need to do?</label>
-                <input type="text" name="whatToDo" id="what-to-do" required />
+                <textarea
+                  type="text"
+                  name="whatToDo"
+                  id="what-to-do"
+                  rows="4"
+                  required
+                ></textarea>
               </li>
               <li>
-                <label for="completeDate">Complete Date</label>
+                <label for="completeDate">Due Date</label>
                 <input
                   type="date"
                   id="complete-date"

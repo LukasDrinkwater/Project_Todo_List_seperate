@@ -2,14 +2,14 @@ import { reassigProjectClass, getProjectsArray } from "./projects";
 
 class Task {
   constructor(taskName, whatToDo, dueDate, assignedProject) {
-    this._taskName = taskName;
+    // this._taskName = taskName;
     this._whatToDo = whatToDo;
     this._dueDate = dueDate;
     this._assignedProject = assignedProject;
   }
-  get taskName() {
-    return this._taskName;
-  }
+  // get taskName() {
+  //   return this._taskName;
+  // }
   get whatToDo() {
     return this._whatToDo;
   }

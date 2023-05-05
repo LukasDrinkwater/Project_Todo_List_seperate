@@ -1,20 +1,103 @@
 /* css colours */
 :root {
-  --Green1: #2f9c85;
-  --Green2: #40c9a2;
-  --Green3: #a3f7b5;
-  --Green4: #e5f9e0;
+  --Blue1: #0075ff;
+  --Blue2: #008cff;
+  --Blue3: #0099f4;
+  --Blue4: #3eb6fc;
+
+  --fontFamily: Arial, sans-serif;
+}
+
+* {
+  font-family: var(--fontFamily);
+}
+
+* input,
+button,
+textarea,
+select {
+  border-radius: 5px;
+  outline: none;
+  border: none;
 }
 
 /* MAIN CONTAINER CSS */
 .main-container {
   display: grid;
   grid-template-columns: 0.2fr 1fr;
+  grid-template-rows: 1fr;
+  height: 100%;
 }
 
 /* FORM CSS */
-.project-
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  padding-top: 200px;
+  padding-bottom: 200px;
+  background-color: var(--Blue1);
+}
 
+.form-container label {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.form-container input,
+button,
+textarea,
+select {
+  padding: 5px;
+  font-size: 1rem;
+  background-color: var(--Blue4);
+}
+
+.form-container .project-submit-form-container ul,
+.list-submit-form-container ul {
+  list-style-type: none;
+  padding-right: 40px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-content: center;
+}
+
+.project-submit-form-container input {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.list-submit-form-container textarea,
+input {
+  margin-top: 10px;
+}
+
+.list-submit-form-container input {
+  text-align: center;
+  width: 100%;
+  width: 217px;
+}
+
+.project-submit-form-container,
+.list-submit-form-container {
+  background-color: var(--Blue1);
+  flex-wrap: nowrap;
+}
+
+.project-submit-form-container li {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.list-submit-form-container li {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
 
 /* FORM CONTAINER CSS */
 .form-container {
@@ -25,10 +108,16 @@
 /* PROJECT CONTAINER CSS */
 .project-task-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  /* grid-template-columns: repeat(auto-fit, minmax(200px, 2fr)); */
+  grid-template-columns: repeat(auto-fit, minmax(200px, max-content));
+  display: flex;
+  flex-wrap: wrap;
 }
 
 /* PROJECT CARD CSS */
 .project-card {
   border-style: dashed;
+  width: 200px;
+  max-width: 100%;
+  height: fit-content;
 }
