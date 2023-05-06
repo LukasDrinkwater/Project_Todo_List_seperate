@@ -54,6 +54,8 @@ function refreshProjectSelect() {
   //   projects.push(project);
   // }
 
+  selectMenu.innerHTML = "";
+
   for (let i = 0; i < projects.length; i++) {
     let option = document.createElement("option");
     option.value = projects[i].projectName;
