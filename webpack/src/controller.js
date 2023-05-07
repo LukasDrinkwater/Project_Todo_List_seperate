@@ -30,10 +30,11 @@ function createProjectStorage() {
 function controller() {
   createProjectStorage(); //makes the project storage array.
   checkIfDefaultTask1Excists();
-  userFormEvents(); //  functions for default project
+  // userFormEvents(); //  functions for default project
   refreshProjectSelect(); //updates project select menu dropdown
 
   domCreateProject();
+  userFormEvents(); //  functions for default project
 }
 
 // DOM REFRESH STUFF

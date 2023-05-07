@@ -59,8 +59,55 @@ function userFormEvents() {
 
     //  call a function that creates a new task object
   });
+
+  addEventListenerToTaskP(form);
+
+  // form.taskP.addEventListener("click", () => {
+  //   let taskP = document.querySelector("task-p");
+  //   taskP.classList.add("task-p-editing");
+  //   console.log("listener working");
+  // });
+}
+// event listener that is triggered when the p is clicked to edit the text
+
+function addEventListenerToTaskP(form) {
+  // loop through node list to add event listner
+
+  for (let i = 0; i < form.taskP.length; i++) {
+    form.taskP[i].addEventListener("click", () => {
+      // let taskP = document.querySelector("task-p");
+      form.taskP[i].classList.add("task-p-editing");
+      saveOrDiscardTaskEdit(form, i);
+      console.log(i);
+    });
+  }
 }
 
+// add tick and cross to save or discard changes.
+function saveOrDiscardTaskEdit(form, i) {
+  let saveOrDiscard;
+  let pContainerDiv = form.taskP[i].parentNode;
+
+  let saveButton = document.createElement("div");
+  let discardButton = document.createElement("div");
+
+  saveButton.innerHTML = "&#10004";
+  discardButton.innerHTML = "&#10006";
+
+  saveButton.classList.add("save-button");
+  discardButton.classList.add("discard-button");
+
+  pContainerDiv.appendChild(saveButton);
+  pContainerDiv.appendChild(discardButton);
+
+  saveButton.addEventListener("click", () => {
+    // do something to save and update the task to local storage
+  });
+
+  discardButton.addEventListener("click", () => {
+    // do something that reverts the changes and removed the save and discard tick
+  });
+}
 //
 //
 //

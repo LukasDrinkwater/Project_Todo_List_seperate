@@ -31,8 +31,10 @@ function domCreateProject(projectArray) {
       const taskCard = document.createElement("div");
       // const taskCardH1 = document.createElement("h1");
       const taskCardp = document.createElement("p");
+      taskCardp.setAttribute("contenteditable", true);
 
       taskCard.classList.add("task-card");
+      taskCardp.classList.add("task-p");
       // taskCardH1.innerHTML = currentProject.tasks[j]._taskName;
       taskCardp.innerHTML = currentProject.tasks[j]._whatToDo;
       // console.log(currentProject.tasks[j].whatToDo);

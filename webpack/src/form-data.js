@@ -5,6 +5,7 @@ const formDataInfo = {
   submitTaskButton: document.getElementById("submit-task-button"),
   projectTaskContainer: document.getElementById("project-task-container"),
   selectMenu: document.getElementById("project-to-add-to"),
+  taskP: document.getElementsByClassName("task-p"),
 };
 
 export { formDataInfo };

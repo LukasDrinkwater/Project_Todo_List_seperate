@@ -42,4 +42,8 @@ function addTaskToProject(task) {
   // localStorage.setItem("allProjects", JSON.stringify(projects));
 }
 
+// function that adds the changed task back to the task array
+
+function updateEditedTask() {}
+
 export { Task, addTaskToProject };

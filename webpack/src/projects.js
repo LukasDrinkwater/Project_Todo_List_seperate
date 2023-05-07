@@ -48,15 +48,15 @@ function reassigProjectClass(projectsParsed) {
       projectsParsed[i]._tasks,
       projectsParsed[i]._projectName
     );
-    // for (let j = 0; j < projectTasks.length; j++) {
-    //   let task = new Task(
-    //     projectTasks[j]._taskName,
-    //     projectTasks[j]._whatToDo,
-    //     projectTasks[j]._dueDate,
-    //     projectTasks[j]._assignedProject
-    //   );
-    //   console.log(task);
-    // }
+    for (let j = 0; j < projectTasks.length; j++) {
+      let task = new Task(
+        projectTasks[j]._taskName,
+        projectTasks[j]._whatToDo,
+        projectTasks[j]._dueDate,
+        projectTasks[j]._assignedProject
+      );
+      // console.log(task);
+    }
     projects.push(project);
   }
 
