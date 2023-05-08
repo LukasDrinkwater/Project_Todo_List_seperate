@@ -6,6 +6,7 @@ import {
   getProjectsArray,
   reassigProjectClass,
   addAllBackToLocalStorage,
+  updateEditedTaskToProject,
 } from "./projects";
 import { refreshProjectSelect } from "./controller";
 import { domCreateProject, clearProjectTaskContainer } from "./change-dom";
@@ -75,33 +76,44 @@ function addEventListenerToTaskP(form) {
 
   for (let i = 0; i < form.taskP.length; i++) {
     form.taskP[i].addEventListener("click", () => {
+      let currentTask = form.taskP[i];
       // let taskP = document.querySelector("task-p");
-      form.taskP[i].classList.add("task-p-editing");
-      saveOrDiscardTaskEdit(form, i);
-      console.log(i);
+      currentTask.classList.add("task-p-editing");
+      saveOrDiscardTaskEdit(form, i, currentTask);
     });
   }
 }
 
 // add tick and cross to save or discard changes.
-function saveOrDiscardTaskEdit(form, i) {
+function saveOrDiscardTaskEdit(form, i, currentTask) {
   let saveOrDiscard;
   let pContainerDiv = form.taskP[i].parentNode;
 
+  let editButtonContainer = document.createElement("div");
   let saveButton = document.createElement("div");
   let discardButton = document.createElement("div");
 
   saveButton.innerHTML = "&#10004";
   discardButton.innerHTML = "&#10006";
 
+  editButtonContainer.classList.add("edit-button-container");
   saveButton.classList.add("save-button");
   discardButton.classList.add("discard-button");
 
-  pContainerDiv.appendChild(saveButton);
-  pContainerDiv.appendChild(discardButton);
+  editButtonContainer.appendChild(saveButton);
+  editButtonContainer.appendChild(discardButton);
+  pContainerDiv.appendChild(editButtonContainer);
 
   saveButton.addEventListener("click", () => {
     // do something to save and update the task to local storage
+    let projectsWithTaskUpdated = updateEditedTaskToProject(currentTask);
+    console.log(projectsWithTaskUpdated);
+    addAllBackToLocalStorage(projectsWithTaskUpdated);
+
+    clearProjectTaskContainer();
+    domCreateProject();
+
+    editButtonContainer.parentNode.removeChild(editButtonContainer);
   });
 
   discardButton.addEventListener("click", () => {
@@ -111,6 +123,12 @@ function saveOrDiscardTaskEdit(form, i) {
 //
 //
 //
+
+// function that returns the new text of the p after it has been edited.
+// function getEditedTaskText(currentTask) {
+//   let editedTaskText = currentTask.innerHTML;
+//   return editedTaskText;
+// }
 
 // function that gets the user data from the task form
 function getProjectFormData(formData) {

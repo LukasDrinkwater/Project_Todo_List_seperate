@@ -133,7 +133,7 @@ input {
   /* box-shadow: 2px 2px 2px aliceblue; */
   border: 5px solid aliceblue;
   border-radius: 5px;
-  width: 200px;
+  width: 230px;
   margin-top: 5px;
   margin-bottom: 5px;
   margin-left: 10px;
@@ -141,4 +141,9 @@ input {
   padding-right: 5px;
   /* max-width: 100; */
   /* height: fit-content; */
+}
+
+.task-card {
+  display: flex;
+  flex-direction: row;
 }

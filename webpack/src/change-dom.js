@@ -18,28 +18,38 @@ function domCreateProject(projectArray) {
   for (let i = 0; i < projects.length; i++) {
     let currentProject = projects[i];
     const projectContainer = formDataInfo.projectTaskContainer;
+    const projectIndex = projects.indexOf(currentProject);
 
     const projectCard = document.createElement("div");
     const projectCardH1 = document.createElement("h1");
 
     projectCard.classList.add("project-card");
+    projectCard.dataset.projectIndex = projectIndex;
 
     projectCardH1.innerHTML = currentProject.projectName;
     projectCard.appendChild(projectCardH1);
-    // console.log(currentProject);
+
     for (let j = 0; j < currentProject.tasks.length; j++) {
+      const taskIndex = currentProject.tasks.indexOf(currentProject.tasks[j]);
+
       const taskCard = document.createElement("div");
-      // const taskCardH1 = document.createElement("h1");
       const taskCardp = document.createElement("p");
+      const taskCardDate = document.createElement("div");
+
       taskCardp.setAttribute("contenteditable", true);
 
       taskCard.classList.add("task-card");
       taskCardp.classList.add("task-p");
-      // taskCardH1.innerHTML = currentProject.tasks[j]._taskName;
+      taskCardDate.classList.add("date");
+
+      taskCardp.dataset.taskIndex = taskIndex;
+      taskCardp.dataset.projectIndex = projectIndex;
+
       taskCardp.innerHTML = currentProject.tasks[j]._whatToDo;
-      // console.log(currentProject.tasks[j].whatToDo);
-      // taskCard.appendChild(taskCardH1);
+      taskCardDate.innerHTML = currentProject.tasks[j]._dueDate;
+
       taskCard.appendChild(taskCardp);
+      taskCard.appendChild(taskCardDate);
       projectCard.appendChild(taskCard);
     }
 

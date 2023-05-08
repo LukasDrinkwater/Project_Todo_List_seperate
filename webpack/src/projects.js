@@ -63,6 +63,21 @@ function reassigProjectClass(projectsParsed) {
   return projects;
 }
 
+// function that takes the updated task and updates the correct task.
+function updateEditedTaskToProject(editedTask) {
+  let projectsParsed = getProjectsArray();
+  let projects = reassigProjectClass(projectsParsed);
+  let taskIndex = editedTask.dataset.taskIndex;
+  let projectIndex = editedTask.dataset.projectIndex;
+  let projectToAddto = projects[projectIndex];
+
+  projects[projectIndex]._tasks[taskIndex]._whatToDo = editedTask.innerHTML;
+
+  // projectToAddto._tasks[taskIndex]._whatToDo = editedTask.innerHTML;
+  console.log("parsed", projects);
+  return projects;
+}
+
 // for loop to take the tasks and project name from each index in the projects local
 // storage array
 
@@ -72,4 +87,5 @@ export {
   reassigProjectClass,
   getProjectsArray,
   addAllBackToLocalStorage,
+  updateEditedTaskToProject,
 };
