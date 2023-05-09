@@ -129,11 +129,16 @@ input {
 }
 
 /* PROJECT CARD CSS */
+.task-info-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .project-card {
   /* box-shadow: 2px 2px 2px aliceblue; */
   border: 5px solid aliceblue;
   border-radius: 5px;
-  width: 230px;
+  width: 250px;
   margin-top: 5px;
   margin-bottom: 5px;
   margin-left: 10px;
@@ -146,4 +151,43 @@ input {
 .task-card {
   display: flex;
   flex-direction: row;
+  height: fit-content;
+}
+
+.task-p {
+  display: flex;
+  flex-grow: 2;
+  width: 100%;
+}
+
+.date {
+  display: flex;
+  flex-grow: 1;
+  justify-content: end;
+  width: 130px;
+  align-items: center;
+}
+
+.priority {
+  display: flex;
+  align-self: center;
+  width: 10px;
+  height: 30px;
+}
+
+.normal {
+  background-color: #2fff1d;
+}
+
+.close {
+  background-color: #ff9812;
+}
+
+.urgent {
+  background-color: #ff0000;
+}
+
+.edit-button-container {
+  display: flex;
+  align-self: center;
 }

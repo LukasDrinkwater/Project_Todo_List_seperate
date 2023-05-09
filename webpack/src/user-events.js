@@ -60,17 +60,14 @@ function userFormEvents() {
 
     //  call a function that creates a new task object
   });
-
+  // event listener that is triggered when the p is clicked to edit the text
   addEventListenerToTaskP(form);
-
-  // form.taskP.addEventListener("click", () => {
-  //   let taskP = document.querySelector("task-p");
-  //   taskP.classList.add("task-p-editing");
-  //   console.log("listener working");
-  // });
+  //  event listener that is triggered when the date is clicked and changes the
+  // priority colour
+  addEvenListenerToDate();
 }
-// event listener that is triggered when the p is clicked to edit the text
 
+// event listener that is triggered when the p is clicked to edit the text
 function addEventListenerToTaskP(form) {
   // loop through node list to add event listner
 
@@ -84,51 +81,72 @@ function addEventListenerToTaskP(form) {
   }
 }
 
+//  event listener that is triggered when the date is clicked and changes the
+// priority colour
+function addEvenListenerToDate() {
+  const taskDate = document.getElementsByClassName("priority");
+  let currentPriority = "normal";
+  for (let i = 0; i < taskDate.length; i++) {
+    taskDate[i].addEventListener("click", () => {
+      if (currentPriority === "normal") {
+        taskDate[i].classList.add("close");
+        taskDate[i].classList.remove(currentPriority);
+        currentPriority = "close";
+      } else if (currentPriority === "close") {
+        taskDate[i].classList.add("urgent");
+        taskDate[i].classList.remove(currentPriority);
+        currentPriority = "urgent";
+      } else {
+        taskDate[i].classList.add("normal");
+        taskDate[i].classList.remove(currentPriority);
+        currentPriority = "normal";
+      }
+    });
+  }
+}
+
 // add tick and cross to save or discard changes.
 function saveOrDiscardTaskEdit(form, i, currentTask) {
   let saveOrDiscard;
-  let pContainerDiv = form.taskP[i].parentNode;
+  let pContainerDiv = form.taskCard[i].parentNode;
+  let checkEditDiscardButtons = document.querySelector(
+    ".edit-button-container"
+  );
 
-  let editButtonContainer = document.createElement("div");
-  let saveButton = document.createElement("div");
-  let discardButton = document.createElement("div");
+  if (checkEditDiscardButtons === null) {
+    let editButtonContainer = document.createElement("div");
+    let saveButton = document.createElement("div");
+    let discardButton = document.createElement("div");
 
-  saveButton.innerHTML = "&#10004";
-  discardButton.innerHTML = "&#10006";
+    saveButton.innerHTML = "&#10004";
+    discardButton.innerHTML = "&#10006";
 
-  editButtonContainer.classList.add("edit-button-container");
-  saveButton.classList.add("save-button");
-  discardButton.classList.add("discard-button");
+    editButtonContainer.classList.add("edit-button-container");
+    saveButton.classList.add("save-button");
+    discardButton.classList.add("discard-button");
 
-  editButtonContainer.appendChild(saveButton);
-  editButtonContainer.appendChild(discardButton);
-  pContainerDiv.appendChild(editButtonContainer);
+    editButtonContainer.appendChild(saveButton);
+    editButtonContainer.appendChild(discardButton);
+    pContainerDiv.appendChild(editButtonContainer);
 
-  saveButton.addEventListener("click", () => {
-    // do something to save and update the task to local storage
-    let projectsWithTaskUpdated = updateEditedTaskToProject(currentTask);
-    console.log(projectsWithTaskUpdated);
-    addAllBackToLocalStorage(projectsWithTaskUpdated);
+    saveButton.addEventListener("click", () => {
+      // do something to save and update the task to local storage
+      let projectsWithTaskUpdated = updateEditedTaskToProject(currentTask);
+      console.log(projectsWithTaskUpdated);
+      addAllBackToLocalStorage(projectsWithTaskUpdated);
 
-    clearProjectTaskContainer();
-    domCreateProject();
+      clearProjectTaskContainer();
+      domCreateProject();
 
-    editButtonContainer.parentNode.removeChild(editButtonContainer);
-  });
+      editButtonContainer.parentNode.removeChild(editButtonContainer);
+    });
 
-  discardButton.addEventListener("click", () => {
-    // do something that reverts the changes and removed the save and discard tick
-  });
+    discardButton.addEventListener("click", () => {
+      // do something that reverts the changes and removed the save and discard tick
+      editButtonContainer.parentNode.removeChild(editButtonContainer);
+    });
+  }
 }
-//
-//
-//
-
-// function that returns the new text of the p after it has been edited.
-// function getEditedTaskText(currentTask) {
-//   let editedTaskText = currentTask.innerHTML;
-//   return editedTaskText;
-// }
 
 // function that gets the user data from the task form
 function getProjectFormData(formData) {

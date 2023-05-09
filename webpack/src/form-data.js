@@ -6,6 +6,8 @@ const formDataInfo = {
   projectTaskContainer: document.getElementById("project-task-container"),
   selectMenu: document.getElementById("project-to-add-to"),
   taskP: document.getElementsByClassName("task-p"),
+  taskDate: document.getElementsByClassName("date"),
+  taskCard: document.getElementsByClassName("task-card"),
 };
 
 export { formDataInfo };

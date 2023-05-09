@@ -32,15 +32,21 @@ function domCreateProject(projectArray) {
     for (let j = 0; j < currentProject.tasks.length; j++) {
       const taskIndex = currentProject.tasks.indexOf(currentProject.tasks[j]);
 
+      const taskInfoContainer = document.createElement("div");
       const taskCard = document.createElement("div");
       const taskCardp = document.createElement("p");
       const taskCardDate = document.createElement("div");
+      const taskCardPriority = document.createElement("div");
 
       taskCardp.setAttribute("contenteditable", true);
 
+      taskInfoContainer.classList.add("task-info-container");
       taskCard.classList.add("task-card");
       taskCardp.classList.add("task-p");
       taskCardDate.classList.add("date");
+      // taskCardDate.classList.add("normal");
+      taskCardPriority.classList.add("priority");
+      taskCardPriority.classList.add("normal");
 
       taskCardp.dataset.taskIndex = taskIndex;
       taskCardp.dataset.projectIndex = projectIndex;
@@ -48,13 +54,20 @@ function domCreateProject(projectArray) {
       taskCardp.innerHTML = currentProject.tasks[j]._whatToDo;
       taskCardDate.innerHTML = currentProject.tasks[j]._dueDate;
 
+      taskCard.appendChild(taskCardPriority);
       taskCard.appendChild(taskCardp);
       taskCard.appendChild(taskCardDate);
-      projectCard.appendChild(taskCard);
+      taskInfoContainer.appendChild(taskCard);
+      projectCard.appendChild(taskInfoContainer);
     }
 
     projectContainer.appendChild(projectCard);
   }
+}
+
+function changeDatePriority() {
+  const formDate = formDataInfo.taskDate;
+  const currentDate = new Date();
 }
 
 function addDomTasks(projectToAddTo) {
