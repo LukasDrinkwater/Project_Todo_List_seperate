@@ -6,7 +6,7 @@ import {
 } from "./create-defaults";
 import { AllProjects, reassigProjectClass, getProjectsArray } from "./projects";
 import { formDataInfo } from "./form-data";
-import { domCreateProject } from "./change-dom";
+import { domCreateProject, changeDatePriority } from "./change-dom";
 
 // What i would do first is, figure out how to write a project to a json file
 // Then how to read that project from there
@@ -35,6 +35,7 @@ function controller() {
 
   domCreateProject();
   userFormEvents(); //  functions for default project
+  changeDatePriority();
 }
 
 // DOM REFRESH STUFF

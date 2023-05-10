@@ -1,5 +1,6 @@
 import { getProjectsArray, reassigProjectClass } from "./projects";
 import { formDataInfo } from "./form-data";
+import { format, parseISO } from "date-fns";
 
 // projectObject is the project that is being added.
 function addProjectDOM(projectObject) {}
@@ -66,8 +67,61 @@ function domCreateProject(projectArray) {
 }
 
 function changeDatePriority() {
-  const formDate = formDataInfo.taskDate;
-  const currentDate = new Date();
+  const {
+    format,
+    differenceInDays,
+    parse,
+    parseISO,
+    differenceInCalendarDays,
+  } = require("date-fns");
+  // let dueDateDiv = document.getElementsByClassName("date");
+
+  // current date comes out as dd-mm-yyyy
+  // div date some out as yyyy-mm-dd
+  // let currentDate = new Date();
+  // let currentdateString = format(currentDate, "dd-MM-yyyy");
+  // let dueDateDiv = document.getElementsByClassName("date");
+
+  // let currentDateFormatted = format(currentDate, "MM/dd/yyyy", new Date());
+  // let currentDateMMddyyyy = parse(
+  //   currentDateFormatted,
+  //   "MM/dd/yyyy",
+  //   new Date()
+  // );
+
+  let currentDate = new Date();
+  let dueDateDiv = document.getElementsByClassName("date");
+
+  // convert currentDate to MM-dd-yyyy format
+  let formattedCurrentDate = format(currentDate, "MM/dd/yyyy");
+  // let formattedCurrentDateObj = new Date(
+  //   formattedCurrentDate.getFullYear(),
+  //   formattedCurrentDate.getMonth(),
+  //   formattedCurrentDate.getDate()
+  // );
+
+  for (let i = 0; i < dueDateDiv.length; i++) {
+    let divDateString = dueDateDiv[i].innerHTML;
+
+    let parsedDivDate = parseISO(divDateString);
+    // let parsedDivDate = parse(divDateString, "yyyy-dd-MM", new Date());
+    let formattedDivDate = format(parsedDivDate, "MM/dd/yyyy");
+    // let formattedDivDateObj = new Date(
+    //   formattedDivDate.getFullYear(),
+    //   formattedDivDate.getMonth(),
+    //   formattedDivDate.getDate()
+    // );
+
+    // let dateObj = parse(dateString, "yyyy-MM-dd", new Date());
+    // let dueDate = format(dateObj, "MM/dd/yyyy");
+    // dueDate = parse(dueDate);
+
+    // let daysDifference = differenceInCalendarDays(
+    //   formattedDivDateObj,
+    //   formattedCurrentDateObj
+    // );
+    console.log(formattedCurrentDate, formattedDivDate);
+  }
 }
 
 function addDomTasks(projectToAddTo) {
@@ -78,4 +132,9 @@ function addDomTasks(projectToAddTo) {
   console.log(projectCardElements);
 }
 
-export { domCreateProject, addDomTasks, clearProjectTaskContainer };
+export {
+  domCreateProject,
+  addDomTasks,
+  clearProjectTaskContainer,
+  changeDatePriority,
+};
