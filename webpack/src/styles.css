@@ -135,6 +135,8 @@ input {
 }
 
 .project-card {
+  display: flex;
+  flex-direction: column;
   /* box-shadow: 2px 2px 2px aliceblue; */
   border: 5px solid aliceblue;
   border-radius: 5px;
@@ -144,8 +146,7 @@ input {
   margin-left: 10px;
   padding-left: 5px;
   padding-right: 5px;
-  /* max-width: 100; */
-  /* height: fit-content; */
+  align-content: center;
 }
 
 .task-card {
@@ -160,12 +161,13 @@ input {
   width: 100%;
 }
 
-.date {
+.date-container {
   display: flex;
   flex-grow: 1;
   justify-content: end;
   width: 130px;
   align-items: center;
+  border-radius: 5px;
 }
 
 .priority {
@@ -179,7 +181,15 @@ input {
   background-color: #2fff1d;
 }
 
+.normal-date {
+  background-color: #2fff1d;
+}
+
 .close {
+  background-color: #ff9812;
+}
+
+.close-date {
   background-color: #ff9812;
 }
 
@@ -187,7 +197,19 @@ input {
   background-color: #ff0000;
 }
 
+.urgent-date {
+  background-color: #ff0000;
+}
+
 .edit-button-container {
   display: flex;
   align-self: center;
+}
+
+.remove-project-button {
+  display: flex;
+  /* text-align: center; */
+  align-self: center;
+  background-color: var(--Blue1);
+  width: fit-content;
 }

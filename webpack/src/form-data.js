@@ -8,6 +8,7 @@ const formDataInfo = {
   taskP: document.getElementsByClassName("task-p"),
   taskDate: document.getElementsByClassName("date"),
   taskCard: document.getElementsByClassName("task-card"),
+  removeProjectButton: document.getElementsByClassName("remove-project-button"),
 };
 
 export { formDataInfo };

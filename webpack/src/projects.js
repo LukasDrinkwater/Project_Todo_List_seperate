@@ -78,8 +78,22 @@ function updateEditedTaskToProject(editedTask) {
   return projects;
 }
 
-// for loop to take the tasks and project name from each index in the projects local
-// storage array
+// function to delete the project
+// could also get the index using indexOf()
+function deleteProject(projectDOMName) {
+  let projectsParsed = getProjectsArray();
+  let projects = reassigProjectClass(projectsParsed);
+
+  for (let i = 0; i < projects.length; i++) {
+    if (projects[i].projectName === projectDOMName) {
+      projects.splice(i, 1);
+      // console.log(projectDOMName);
+    }
+    console.log(projects);
+  }
+
+  // console.log(projects);
+}
 
 export {
   Project,
@@ -88,4 +102,5 @@ export {
   getProjectsArray,
   addAllBackToLocalStorage,
   updateEditedTaskToProject,
+  deleteProject,
 };

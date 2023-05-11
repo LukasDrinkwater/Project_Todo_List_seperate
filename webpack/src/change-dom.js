@@ -23,12 +23,16 @@ function domCreateProject(projectArray) {
 
     const projectCard = document.createElement("div");
     const projectCardH1 = document.createElement("h1");
+    const removeProjectButton = document.createElement("button");
 
     projectCard.classList.add("project-card");
     projectCard.dataset.projectIndex = projectIndex;
+    removeProjectButton.setAttribute("id", "remove-project");
+    removeProjectButton.classList.add("remove-project-button");
 
     projectCardH1.innerHTML = currentProject.projectName;
     projectCard.appendChild(projectCardH1);
+    removeProjectButton.innerHTML = "Remove Project";
 
     for (let j = 0; j < currentProject.tasks.length; j++) {
       const taskIndex = currentProject.tasks.indexOf(currentProject.tasks[j]);
@@ -37,6 +41,7 @@ function domCreateProject(projectArray) {
       const taskCard = document.createElement("div");
       const taskCardp = document.createElement("p");
       const taskCardDate = document.createElement("div");
+      const taskCardDatep = document.createElement("p");
       const taskCardPriority = document.createElement("div");
 
       taskCardp.setAttribute("contenteditable", true);
@@ -44,7 +49,8 @@ function domCreateProject(projectArray) {
       taskInfoContainer.classList.add("task-info-container");
       taskCard.classList.add("task-card");
       taskCardp.classList.add("task-p");
-      taskCardDate.classList.add("date");
+      taskCardDate.classList.add("date-container");
+      taskCardDatep.classList.add("date");
       // taskCardDate.classList.add("normal");
       taskCardPriority.classList.add("priority");
       taskCardPriority.classList.add("normal");
@@ -53,15 +59,17 @@ function domCreateProject(projectArray) {
       taskCardp.dataset.projectIndex = projectIndex;
 
       taskCardp.innerHTML = currentProject.tasks[j]._whatToDo;
-      taskCardDate.innerHTML = currentProject.tasks[j]._dueDate;
+      taskCardDatep.innerHTML = currentProject.tasks[j]._dueDate;
 
       taskCard.appendChild(taskCardPriority);
       taskCard.appendChild(taskCardp);
+      taskCardDate.appendChild(taskCardDatep);
       taskCard.appendChild(taskCardDate);
       taskInfoContainer.appendChild(taskCard);
       projectCard.appendChild(taskInfoContainer);
     }
 
+    projectCard.appendChild(removeProjectButton);
     projectContainer.appendChild(projectCard);
   }
 }
@@ -74,53 +82,44 @@ function changeDatePriority() {
     parseISO,
     differenceInCalendarDays,
   } = require("date-fns");
-  // let dueDateDiv = document.getElementsByClassName("date");
-
-  // current date comes out as dd-mm-yyyy
-  // div date some out as yyyy-mm-dd
-  // let currentDate = new Date();
-  // let currentdateString = format(currentDate, "dd-MM-yyyy");
-  // let dueDateDiv = document.getElementsByClassName("date");
-
-  // let currentDateFormatted = format(currentDate, "MM/dd/yyyy", new Date());
-  // let currentDateMMddyyyy = parse(
-  //   currentDateFormatted,
-  //   "MM/dd/yyyy",
-  //   new Date()
-  // );
 
   let currentDate = new Date();
   let dueDateDiv = document.getElementsByClassName("date");
 
-  // convert currentDate to MM-dd-yyyy format
   let formattedCurrentDate = format(currentDate, "MM/dd/yyyy");
-  // let formattedCurrentDateObj = new Date(
-  //   formattedCurrentDate.getFullYear(),
-  //   formattedCurrentDate.getMonth(),
-  //   formattedCurrentDate.getDate()
-  // );
+  formattedCurrentDate = new Date(formattedCurrentDate);
+  let formattedCurrentDateObj = new Date(
+    formattedCurrentDate.getFullYear(),
+    formattedCurrentDate.getMonth(),
+    formattedCurrentDate.getDate()
+  );
 
   for (let i = 0; i < dueDateDiv.length; i++) {
     let divDateString = dueDateDiv[i].innerHTML;
 
     let parsedDivDate = parseISO(divDateString);
-    // let parsedDivDate = parse(divDateString, "yyyy-dd-MM", new Date());
+
     let formattedDivDate = format(parsedDivDate, "MM/dd/yyyy");
-    // let formattedDivDateObj = new Date(
-    //   formattedDivDate.getFullYear(),
-    //   formattedDivDate.getMonth(),
-    //   formattedDivDate.getDate()
-    // );
+    formattedDivDate = new Date(formattedDivDate);
+    let formattedDivDateObj = new Date(
+      formattedDivDate.getFullYear(),
+      formattedDivDate.getMonth(),
+      formattedDivDate.getDate()
+    );
 
-    // let dateObj = parse(dateString, "yyyy-MM-dd", new Date());
-    // let dueDate = format(dateObj, "MM/dd/yyyy");
-    // dueDate = parse(dueDate);
+    let daysDifference = differenceInCalendarDays(
+      formattedCurrentDateObj,
+      formattedDivDateObj
+    );
 
-    // let daysDifference = differenceInCalendarDays(
-    //   formattedDivDateObj,
-    //   formattedCurrentDateObj
-    // );
-    console.log(formattedCurrentDate, formattedDivDate);
+    if (daysDifference <= 5) {
+      dueDateDiv[i].classList.add("close-date");
+    } else if (daysDifference <= 2) {
+      dueDateDiv[i].classList.add("urgent-date");
+    } else {
+      dueDateDiv[i].classList.add("normal-date");
+    }
+    // console.log(formattedCurrentDateObj, formattedDivDateObj);
   }
 }
 

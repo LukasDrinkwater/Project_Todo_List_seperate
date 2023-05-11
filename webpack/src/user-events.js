@@ -7,6 +7,7 @@ import {
   reassigProjectClass,
   addAllBackToLocalStorage,
   updateEditedTaskToProject,
+  deleteProject,
 } from "./projects";
 import { refreshProjectSelect } from "./controller";
 import { domCreateProject, clearProjectTaskContainer } from "./change-dom";
@@ -65,6 +66,9 @@ function userFormEvents() {
   //  event listener that is triggered when the date is clicked and changes the
   // priority colour
   addEvenListenerToDate();
+
+  // calls the function that removes the project on button click
+  removeProject();
 }
 
 // event listener that is triggered when the p is clicked to edit the text
@@ -163,6 +167,24 @@ function getProjectFormData(formData) {
   // const project = projectFormObject(projectFormValues);
 
   return projectFormValues;
+}
+
+// function that removes the project when the remove project button is clicked.
+function removeProject() {
+  let removeProjectButton = formDataInfo.removeProjectButton;
+
+  for (let i = 0; i < removeProjectButton.length; i++) {
+    removeProjectButton[i].addEventListener("click", () => {
+      let button = removeProjectButton[i];
+
+      let projectDOMName = button.parentElement.querySelector("h1").innerHTML;
+      // console.log(projectName);
+
+      deleteProject(projectDOMName);
+    });
+  }
+
+  // console.log(removeProjectButton);
 }
 
 function getTaskFormData(formData) {
