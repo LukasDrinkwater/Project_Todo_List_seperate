@@ -1,6 +1,7 @@
 import { getProjectsArray, reassigProjectClass } from "./projects";
 import { formDataInfo } from "./form-data";
 import { format, parseISO } from "date-fns";
+import { userFormEvents } from "./user-events";
 
 // projectObject is the project that is being added.
 function addProjectDOM(projectObject) {}

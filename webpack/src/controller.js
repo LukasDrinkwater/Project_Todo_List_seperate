@@ -1,4 +1,4 @@
-import { userFormEvents } from "./user-events";
+import { userFormEvents, removeProjectEvent } from "./user-events";
 import {
   makeDefaultTask1,
   makeDefaultTaskDOM,
@@ -35,6 +35,7 @@ function controller() {
 
   domCreateProject();
   userFormEvents(); //  functions for default project
+  removeProjectEvent();
   changeDatePriority();
 }
 

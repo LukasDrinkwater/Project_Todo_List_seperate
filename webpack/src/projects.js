@@ -1,4 +1,6 @@
 import { Task } from "./task";
+import { domCreateProject, clearProjectTaskContainer } from "./change-dom";
+import { userFormEvents } from "./user-events";
 
 class Project {
   // task object
@@ -80,7 +82,7 @@ function updateEditedTaskToProject(editedTask) {
 
 // function to delete the project
 // could also get the index using indexOf()
-function deleteProject(projectDOMName) {
+function deleteProjectFromStorage(projectDOMName) {
   let projectsParsed = getProjectsArray();
   let projects = reassigProjectClass(projectsParsed);
 
@@ -88,11 +90,14 @@ function deleteProject(projectDOMName) {
     if (projects[i].projectName === projectDOMName) {
       projects.splice(i, 1);
       // console.log(projectDOMName);
+      // updpate the project local storage.
     }
-    console.log(projects);
+    addAllBackToLocalStorage(projects);
+    // refresh the DOm
+    clearProjectTaskContainer();
+    domCreateProject();
   }
-
-  // console.log(projects);
+  userFormEvents();
 }
 
 export {
@@ -102,5 +107,5 @@ export {
   getProjectsArray,
   addAllBackToLocalStorage,
   updateEditedTaskToProject,
-  deleteProject,
+  deleteProjectFromStorage,
 };

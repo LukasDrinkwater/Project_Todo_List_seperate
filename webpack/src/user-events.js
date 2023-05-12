@@ -7,10 +7,14 @@ import {
   reassigProjectClass,
   addAllBackToLocalStorage,
   updateEditedTaskToProject,
-  deleteProject,
+  deleteProjectFromStorage,
 } from "./projects";
 import { refreshProjectSelect } from "./controller";
-import { domCreateProject, clearProjectTaskContainer } from "./change-dom";
+import {
+  domCreateProject,
+  clearProjectTaskContainer,
+  changeDatePriority,
+} from "./change-dom";
 
 function userFormEvents() {
   const form = formDataInfo;
@@ -29,6 +33,10 @@ function userFormEvents() {
     refreshProjectSelect();
     clearProjectTaskContainer();
     domCreateProject();
+    //
+    //
+    let projectNameField = (document.getElementById("projectName").value = "");
+    // userFormEvents();
   });
 
   //
@@ -59,16 +67,18 @@ function userFormEvents() {
     clearProjectTaskContainer();
     domCreateProject();
 
-    //  call a function that creates a new task object
+    let taskNameField = (document.getElementById("what-to-do").value = "");
   });
+
   // event listener that is triggered when the p is clicked to edit the text
   addEventListenerToTaskP(form);
+
   //  event listener that is triggered when the date is clicked and changes the
   // priority colour
   addEvenListenerToDate();
 
   // calls the function that removes the project on button click
-  removeProject();
+  // removeProjectEvent();
 }
 
 // event listener that is triggered when the p is clicked to edit the text
@@ -170,7 +180,7 @@ function getProjectFormData(formData) {
 }
 
 // function that removes the project when the remove project button is clicked.
-function removeProject() {
+function removeProjectEvent() {
   let removeProjectButton = formDataInfo.removeProjectButton;
 
   for (let i = 0; i < removeProjectButton.length; i++) {
@@ -180,11 +190,14 @@ function removeProject() {
       let projectDOMName = button.parentElement.querySelector("h1").innerHTML;
       // console.log(projectName);
 
-      deleteProject(projectDOMName);
+      deleteProjectFromStorage(projectDOMName);
     });
   }
 
   // console.log(removeProjectButton);
+  refreshProjectSelect();
+  changeDatePriority();
+  // refreshProjectSelect();
 }
 
 function getTaskFormData(formData) {
@@ -198,4 +211,4 @@ function getTaskFormData(formData) {
   return taskFormValues;
 }
 
-export { userFormEvents };
+export { userFormEvents, removeProjectEvent };
