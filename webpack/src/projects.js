@@ -1,14 +1,12 @@
 import { Task } from "./task";
 import { domCreateProject, clearProjectTaskContainer } from "./change-dom";
-import { userFormEvents } from "./user-events";
+import { userFormEvents, removeProjectEvent } from "./user-events";
 
+// class to make the projects
 class Project {
-  // task object
   constructor(tasks, projectName) {
     this._tasks = tasks;
     this._projectName = projectName;
-
-    // let taskArray = [];
   }
   get tasks() {
     return this._tasks;
@@ -18,6 +16,7 @@ class Project {
   }
 }
 
+// pulls the project array as a string.
 function getProjectsArray() {
   let projectsParsed = JSON.parse(localStorage.getItem("allProjects"));
   // console.log(projectsParsed);
@@ -57,7 +56,6 @@ function reassigProjectClass(projectsParsed) {
         projectTasks[j]._dueDate,
         projectTasks[j]._assignedProject
       );
-      // console.log(task);
     }
     projects.push(project);
   }
@@ -75,7 +73,6 @@ function updateEditedTaskToProject(editedTask) {
 
   projects[projectIndex]._tasks[taskIndex]._whatToDo = editedTask.innerHTML;
 
-  // projectToAddto._tasks[taskIndex]._whatToDo = editedTask.innerHTML;
   console.log("parsed", projects);
   return projects;
 }
@@ -89,15 +86,14 @@ function deleteProjectFromStorage(projectDOMName) {
   for (let i = 0; i < projects.length; i++) {
     if (projects[i].projectName === projectDOMName) {
       projects.splice(i, 1);
-      // console.log(projectDOMName);
       // updpate the project local storage.
     }
     addAllBackToLocalStorage(projects);
     // refresh the DOm
     clearProjectTaskContainer();
     domCreateProject();
+    removeProjectEvent();
   }
-  userFormEvents();
 }
 
 export {

@@ -36,7 +36,7 @@ function userFormEvents() {
     //
     //
     let projectNameField = (document.getElementById("projectName").value = "");
-    // userFormEvents();
+    removeProjectEvent();
   });
 
   //
@@ -76,9 +76,6 @@ function userFormEvents() {
   //  event listener that is triggered when the date is clicked and changes the
   // priority colour
   addEvenListenerToDate();
-
-  // calls the function that removes the project on button click
-  // removeProjectEvent();
 }
 
 // event listener that is triggered when the p is clicked to edit the text
@@ -172,10 +169,6 @@ function getProjectFormData(formData) {
   for (let [key, value] of projectFormData.entries()) {
     projectFormValues[key] = value;
   }
-
-  //   create the new ProjectFormObject
-  // const project = projectFormObject(projectFormValues);
-
   return projectFormValues;
 }
 
@@ -188,16 +181,13 @@ function removeProjectEvent() {
       let button = removeProjectButton[i];
 
       let projectDOMName = button.parentElement.querySelector("h1").innerHTML;
-      // console.log(projectName);
 
       deleteProjectFromStorage(projectDOMName);
     });
   }
 
-  // console.log(removeProjectButton);
   refreshProjectSelect();
   changeDatePriority();
-  // refreshProjectSelect();
 }
 
 function getTaskFormData(formData) {

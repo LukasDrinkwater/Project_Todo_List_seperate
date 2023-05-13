@@ -40,6 +40,7 @@ function controller() {
 }
 
 // DOM REFRESH STUFF
+// refreshed the project to add to drop down.
 function refreshProjectSelect() {
   let projectsParsed = getProjectsArray();
   let projects = reassigProjectClass(projectsParsed);
@@ -47,17 +48,8 @@ function refreshProjectSelect() {
   let options = selectMenu.options;
   let optionsValues = [];
 
-  // for loop to take the tasks and project name from each index in the projects local
-  // storage array
-  // for (let i = 0; i < projectsParsed.length; i++) {
-  //   let project = reassigProjectClass(
-  //     projectsParsed[i]._tasks,
-  //     projectsParsed[i]._projectName
-  //   );
-  //   projects.push(project);
-  // }
-
-  selectMenu.innerHTML = "";
+  selectMenu.innerHTML = ""; //clears it so it can loop through the local storage
+  //array
 
   for (let i = 0; i < projects.length; i++) {
     let option = document.createElement("option");
@@ -67,10 +59,6 @@ function refreshProjectSelect() {
 
     selectMenu.add(option);
   }
-
-  // for (let i = 0; i < options.length; i++) {
-  //   optionsValues.push(options[i].value);
-  // }
 }
 
 export { controller, refreshProjectSelect };

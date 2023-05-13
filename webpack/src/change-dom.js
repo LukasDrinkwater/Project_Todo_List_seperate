@@ -3,16 +3,15 @@ import { formDataInfo } from "./form-data";
 import { format, parseISO } from "date-fns";
 import { userFormEvents } from "./user-events";
 
-// projectObject is the project that is being added.
-function addProjectDOM(projectObject) {}
-
+// function to clear the DOM of the project and task container
 function clearProjectTaskContainer() {
   let projectTaskContainer = formDataInfo.projectTaskContainer;
 
   projectTaskContainer.innerHTML = "";
 }
 
-// takes in the project array.
+// takes in the project array and creates the DOM for each project.
+// loop in a loop
 function domCreateProject(projectArray) {
   let projectsParsed = getProjectsArray();
   let projects = reassigProjectClass(projectsParsed);
@@ -52,7 +51,6 @@ function domCreateProject(projectArray) {
       taskCardp.classList.add("task-p");
       taskCardDate.classList.add("date-container");
       taskCardDatep.classList.add("date");
-      // taskCardDate.classList.add("normal");
       taskCardPriority.classList.add("priority");
       taskCardPriority.classList.add("normal");
 
@@ -73,8 +71,11 @@ function domCreateProject(projectArray) {
     projectCard.appendChild(removeProjectButton);
     projectContainer.appendChild(projectCard);
   }
+  changeDatePriority();
 }
 
+// works out the difference in days from the current date to the due date of the task
+// the changes the class on the due date
 function changeDatePriority() {
   const {
     format,
@@ -96,13 +97,16 @@ function changeDatePriority() {
   );
 
   for (let i = 0; i < dueDateDiv.length; i++) {
+    // the date needs to be formatted so it is the same layout.
+    // the current date and date from the form are slightly different.
     let divDateString = dueDateDiv[i].innerHTML;
 
     let parsedDivDate = parseISO(divDateString);
 
     let formattedDivDate = format(parsedDivDate, "MM/dd/yyyy");
     formattedDivDate = new Date(formattedDivDate);
-    let formattedDivDateObj = new Date(
+    let formattedDivDateObj = new Date( //the date needs to be made into an object
+      //to be used in differenceInCalenderDays
       formattedDivDate.getFullYear(),
       formattedDivDate.getMonth(),
       formattedDivDate.getDate()
@@ -120,7 +124,6 @@ function changeDatePriority() {
     } else {
       dueDateDiv[i].classList.add("normal-date");
     }
-    // console.log(formattedCurrentDateObj, formattedDivDateObj);
   }
 }
 

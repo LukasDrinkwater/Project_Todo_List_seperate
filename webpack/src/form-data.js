@@ -1,3 +1,5 @@
+// gets all the form data and DOM info that will be used in multiple functions
+
 const formDataInfo = {
   projectForm: document.getElementById("project-submit-form"),
   taskForm: document.getElementById("task-submit-form"),
